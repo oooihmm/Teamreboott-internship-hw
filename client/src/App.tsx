@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import GlobalStyle from "./style/global";
 
@@ -9,6 +9,17 @@ import { imageData } from "./interface/unsplash";
 
 function App() {
   const [bookmark, setBookmark] = useState<imageData[]>([]);
+
+  useEffect(() => {
+    const savedBookmark = localStorage.getItem("savedBookmark");
+    if (savedBookmark) {
+      setBookmark(JSON.parse(savedBookmark));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("savedBookmark", JSON.stringify(bookmark));
+  }, [bookmark]);
 
   const handleBookmark = (image: imageData) => {
     const isBookmarked = bookmark.some(
