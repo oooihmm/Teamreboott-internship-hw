@@ -37,7 +37,7 @@ const ImageContainer = ({ image, bookmark, handleBookmark }: ImageProps) => {
   });
 
   const link = image.urls.small;
-  const description = image.description;
+  const description = image.alt_description;
 
   const handleClick = () => {
     setBookmarkColors({
