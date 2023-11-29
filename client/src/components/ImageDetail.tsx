@@ -140,7 +140,7 @@ const ImageDetail = ({
               <span>
                 {image.created_at.substring(0, image.created_at.indexOf("T"))}
               </span>
-              <span hidden={!description || description.length > 150}>
+              <span hidden={!description || description.length > 100}>
                 {description}
               </span>
             </ModalBody>
