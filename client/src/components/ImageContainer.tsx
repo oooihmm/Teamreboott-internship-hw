@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useState } from "react";
-import { imageData } from "../interface/unsplash";
+import { ImageData } from "../interface/unsplash";
 
 import Bookmark from "../style/bookmark";
 
@@ -21,9 +21,9 @@ const Image = styled.div`
 `;
 
 type ImageProps = {
-  image: imageData;
-  bookmark: imageData[];
-  handleBookmark: (image: imageData) => void;
+  image: ImageData;
+  bookmark: ImageData[];
+  handleBookmark: (image: ImageData) => void;
 };
 
 const ImageContainer = ({ image, bookmark, handleBookmark }: ImageProps) => {

@@ -5,16 +5,15 @@ import Contents from "../style/contents";
 import SearchContainer from "../components/SearchContainer";
 import ImageContainer from "../components/ImageContainer";
 import ImageWrapper from "../style/imagewrapper";
-import { imageData, Urls } from "../interface/unsplash";
+import { ImageData } from "../interface/unsplash";
 
 type HomeProps = {
-  bookmark: imageData[];
-  handleBookmark: (image: imageData) => void;
+  bookmark: ImageData[];
+  handleBookmark: (image: ImageData) => void;
 };
 
 const Home = ({ bookmark, handleBookmark }: HomeProps) => {
-  const [imageList, setImageList] = useState<imageData[]>([]);
-  const [BackgroundImage, setBackgroundImage] = useState<Urls | {}>({});
+  const [imageList, setImageList] = useState<ImageData[]>([]);
 
   useEffect(() => {
     axios
@@ -24,8 +23,8 @@ const Home = ({ bookmark, handleBookmark }: HomeProps) => {
           count: 12,
         },
       })
-      .then((response: AxiosResponse<imageData[]>) => {
-        const rawImageData: imageData[] = response.data;
+      .then((response: AxiosResponse<ImageData[]>) => {
+        const rawImageData: ImageData[] = response.data;
         setImageList(rawImageData);
         console.log(rawImageData);
       })

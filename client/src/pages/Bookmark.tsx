@@ -4,11 +4,11 @@ import Dashboard from "../style/dashboard";
 import Contents from "../style/contents";
 import ImageContainer from "../components/ImageContainer";
 import ImageWrapper from "../style/imagewrapper";
-import { imageData, Urls } from "../interface/unsplash";
+import { ImageData, Urls } from "../interface/unsplash";
 
 type BookmarkProps = {
-  bookmark: imageData[];
-  handleBookmark: (image: imageData) => void;
+  bookmark: ImageData[];
+  handleBookmark: (image: ImageData) => void;
 };
 
 const Bookmark = ({ bookmark, handleBookmark }: BookmarkProps) => {

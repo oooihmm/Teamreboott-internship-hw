@@ -5,10 +5,10 @@ import GlobalStyle from "./style/global";
 import Home from "./pages/Home";
 import Search from "./pages/Search";
 import Bookmark from "./pages/Bookmark";
-import { imageData } from "./interface/unsplash";
+import { ImageData } from "./interface/unsplash";
 
 function App() {
-  const [bookmark, setBookmark] = useState<imageData[]>([]);
+  const [bookmark, setBookmark] = useState<ImageData[]>([]);
 
   useEffect(() => {
     const savedBookmark = localStorage.getItem("savedBookmark");
@@ -21,7 +21,7 @@ function App() {
     localStorage.setItem("savedBookmark", JSON.stringify(bookmark));
   }, [bookmark]);
 
-  const handleBookmark = (image: imageData) => {
+  const handleBookmark = (image: ImageData) => {
     const isBookmarked = bookmark.some(
       (bookmarkedImage) => bookmarkedImage.id === image.id
     );
