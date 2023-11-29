@@ -45,7 +45,12 @@ function App() {
             <Home handleBookmark={handleBookmark} bookmark={bookmark} />
           }
         ></Route>
-        <Route path="search" element={<Search />}></Route>
+        <Route
+          path="search"
+          element={
+            <Search handleBookmark={handleBookmark} bookmark={bookmark} />
+          }
+        ></Route>
         <Route
           path="bookmark"
           element={
