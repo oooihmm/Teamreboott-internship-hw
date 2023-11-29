@@ -4,7 +4,7 @@ import Dashboard from "../style/dashboard";
 import Contents from "../style/contents";
 import ImageContainer from "../components/ImageContainer";
 import ImageWrapper from "../style/imagewrapper";
-import { ImageData, Urls } from "../interface/unsplash";
+import { ImageData } from "../interface/unsplash";
 
 type BookmarkProps = {
   bookmark: ImageData[];

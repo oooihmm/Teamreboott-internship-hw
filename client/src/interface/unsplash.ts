@@ -1,5 +1,6 @@
-export interface ImageData {
+export interface RawImageData {
   id: string;
+  slug: string;
   created_at: string;
   updated_at: string;
   width: number;
@@ -19,11 +20,12 @@ export interface ImageData {
 export interface SearchData {
   total: number;
   total_pages: number;
-  results: SearchImageData;
+  results: ImageData[];
 }
 
-export interface SearchImageData {
+export interface ImageData {
   id: string;
+  slug: string;
   created_at: string;
   width: number;
   height: number;
@@ -32,6 +34,7 @@ export interface SearchImageData {
   user: User;
   urls: Urls;
   links: Links;
+  alt_description: string;
 }
 
 export interface User {
