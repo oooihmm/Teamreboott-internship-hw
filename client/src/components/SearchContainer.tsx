@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import SearchBox from "./SearchBox";
 
 const SearchImage = styled.div`
   width: 100%;
@@ -30,28 +32,6 @@ const SearchTitle = styled.span`
   font-weight: 900;
 `;
 
-const SearchInput = styled.input`
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  -o-appearance: none;
-  appearance: none;
-
-  width: calc(100vw / 2);
-  min-width: 1180px;
-  height: 40px;
-  background-color: white;
-
-  border: solid #d1d1d1;
-  border-radius: 4px;
-  box-shadow: none;
-  &:focus {
-    outline: none;
-  }
-
-  padding: 0 10px;
-  margin-top: 10px;
-`;
-
 const SearchContainer = () => {
   return (
     <>
@@ -64,7 +44,7 @@ const SearchContainer = () => {
           <SearchTitle>Unsplash</SearchTitle>
           <span>인터넷의 시각 자료 출처입니다.</span>
           <span>모든 지역에 있는 크리에이터들의 지원들 받습니다.</span>
-          <SearchInput placeholder="고해상도 이미지 검색"></SearchInput>
+          <SearchBox />
         </SearchContents>
       </SearchImage>
     </>
