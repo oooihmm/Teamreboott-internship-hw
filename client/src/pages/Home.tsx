@@ -5,7 +5,7 @@ import Contents from "../style/contents";
 import SearchContainer from "../components/SearchContainer";
 import ImageContainer from "../components/ImageContainer";
 import ImageWrapper from "../style/imagewrapper";
-import { ImageData } from "../interface/unsplash";
+import { RawImageData, ImageData } from "../interface/unsplash";
 
 type HomeProps = {
   bookmark: ImageData[];
@@ -23,10 +23,22 @@ const Home = ({ bookmark, handleBookmark }: HomeProps) => {
           count: 12,
         },
       })
-      .then((response: AxiosResponse<ImageData[]>) => {
-        const rawImageData: ImageData[] = response.data;
-        setImageList(rawImageData);
-        console.log(rawImageData);
+      .then((response: AxiosResponse<RawImageData[]>) => {
+        const rawImageData: RawImageData[] = response.data;
+        const imageDataList: ImageData[] = rawImageData.map((image) => ({
+          id: image.id,
+          slug: image.slug,
+          created_at: image.created_at,
+          width: image.width,
+          height: image.height,
+          color: image.color,
+          likes: image.likes,
+          user: image.user,
+          urls: image.urls,
+          links: image.links,
+          alt_description: image.description, // Rename description to alt_description
+        }));
+        setImageList(imageDataList);
       })
       .catch((error: string) => {
         console.error(error);
