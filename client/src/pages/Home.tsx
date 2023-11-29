@@ -35,7 +35,7 @@ const Home = ({ bookmark, handleBookmark }: HomeProps) => {
           user: image.user,
           urls: image.urls,
           links: image.links,
-          alt_description: image.description, // Rename description to alt_description
+          alt_description: image.description,
         }));
         setImageList(imageDataList);
       })
