@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React from "react";
 import styled from "styled-components";
 import SearchBox from "./SearchBox";
 
@@ -15,7 +14,7 @@ const SearchImage = styled.div`
 
 const SearchContents = styled.div`
   position: absolute;
-  top: 50%;
+  top: 70%;
   left: 50%;
   transform: translate(-50%, -50%);
   color: white;
