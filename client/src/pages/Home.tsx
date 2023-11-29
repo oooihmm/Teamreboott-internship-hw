@@ -3,8 +3,7 @@ import axios, { AxiosResponse } from "axios";
 import Dashboard from "../style/dashboard";
 import Contents from "../style/contents";
 import SearchContainer from "../components/SearchContainer";
-import ImageBox from "../components/ImageBox";
-import ImageWrapper from "../style/imagewrapper";
+import ImageContainer from "../components/ImageContainer";
 import { RawImageData, ImageData } from "../interface/unsplash";
 
 type HomeProps = {
@@ -45,42 +44,15 @@ const Home = ({ bookmark, handleBookmark }: HomeProps) => {
       });
   }, []);
 
-  const chunkSize = Math.round(imageList.length / 3);
-
   return (
     <Dashboard>
       <SearchContainer></SearchContainer>
       <Contents>
-        <ImageWrapper>
-          {imageList.slice(0, chunkSize).map((image) => (
-            <ImageBox
-              key={image.id}
-              image={image}
-              bookmark={bookmark}
-              handleBookmark={handleBookmark}
-            />
-          ))}
-        </ImageWrapper>
-        <ImageWrapper>
-          {imageList.slice(chunkSize, chunkSize * 2).map((image) => (
-            <ImageBox
-              key={image.id}
-              image={image}
-              bookmark={bookmark}
-              handleBookmark={handleBookmark}
-            />
-          ))}
-        </ImageWrapper>
-        <ImageWrapper>
-          {imageList.slice(chunkSize * 2, imageList.length).map((image) => (
-            <ImageBox
-              key={image.id}
-              image={image}
-              bookmark={bookmark}
-              handleBookmark={handleBookmark}
-            />
-          ))}
-        </ImageWrapper>
+        <ImageContainer
+          imageList={imageList}
+          bookmark={bookmark}
+          handleBookmark={handleBookmark}
+        />
       </Contents>
     </Dashboard>
   );

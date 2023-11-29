@@ -4,9 +4,8 @@ import { useLocation } from "react-router-dom";
 import axios, { AxiosResponse } from "axios";
 import Dashboard from "../style/dashboard";
 import Contents from "../style/contents";
-import ImageBox from "../components/ImageBox";
-import ImageWrapper from "../style/imagewrapper";
 import SearchBox from "../components/SearchBox";
+import ImageContainer from "../components/ImageContainer";
 import { SearchData, ImageData } from "../interface/unsplash";
 
 type SearchProps = {
@@ -44,43 +43,16 @@ const Search = ({ bookmark, handleBookmark }: SearchProps) => {
     }
   }, [query]);
 
-  const chunkSize = Math.round(imageList.length / 3);
-
   return (
     <Dashboard>
       <Contents>
         <SearchTitle>{query}</SearchTitle>
         <SearchBox />
-        <ImageWrapper>
-          {imageList.slice(0, chunkSize).map((image) => (
-            <ImageBox
-              key={image.id}
-              image={image}
-              bookmark={bookmark}
-              handleBookmark={handleBookmark}
-            />
-          ))}
-        </ImageWrapper>
-        <ImageWrapper>
-          {imageList.slice(chunkSize, chunkSize * 2).map((image) => (
-            <ImageBox
-              key={image.id}
-              image={image}
-              bookmark={bookmark}
-              handleBookmark={handleBookmark}
-            />
-          ))}
-        </ImageWrapper>
-        <ImageWrapper>
-          {imageList.slice(chunkSize * 2, imageList.length).map((image) => (
-            <ImageBox
-              key={image.id}
-              image={image}
-              bookmark={bookmark}
-              handleBookmark={handleBookmark}
-            />
-          ))}
-        </ImageWrapper>
+        <ImageContainer
+          imageList={imageList}
+          bookmark={bookmark}
+          handleBookmark={handleBookmark}
+        />
       </Contents>
     </Dashboard>
   );
