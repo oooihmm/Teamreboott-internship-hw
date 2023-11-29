@@ -1,6 +1,8 @@
 {
   "name": "my-app",
   "version": "0.1.0",
+  "main": "./public/electron.js",
+  "homepage": "./",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
@@ -12,6 +14,7 @@
     "@types/react-dom": "^18.2.17",
     "axios": "^1.6.2",
     "dotenv": "^16.3.1",
+    "electron-is-dev": "^2.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.19.0",
@@ -25,7 +28,14 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "compile-main": "tsc ./public/electron.ts",
+    "pack": "npm run compile-main && npm run build && electron-builder --dir",
+    "electron": "npm run compile-main && npm run build && electron-builder build",
+    "build:osx": "npm run build -- --mac",
+    "build:linux": "npm run build -- --linux",
+    "build:win": "npm run build -- --win",
+    "predist": "npm run compile-main"
   },
   "eslintConfig": {
     "extends": [
@@ -44,5 +54,59 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "cross-env": "^7.0.3",
+    "electron": "^27.1.2",
+    "electron-builder": "^24.9.1",
+    "wait-on": "^7.2.0"
+  },
+  "build": {
+    "productName": "unsplash",
+    "appId": "unsplash",
+    "asar": true,
+    "protocols": {
+      "name": "unsplash",
+      "schemes": [
+        "unsplash"
+      ]
+    },
+    "mac": {
+      "target": [
+        "default"
+      ]
+    },
+    "dmg": {
+      "title": "tournant"
+    },
+    "win": {
+      "target": [
+        "zip",
+        "nsis"
+      ]
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb",
+        "rpm",
+        "zip",
+        "tar.gz"
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": false,
+      "installerLanguages": [
+        "en_US",
+        "ko_KR"
+      ],
+      "language": "1042"
+    },
+    "directories": {
+      "output": "dist/",
+      "app": "."
+    }
   }
 }
