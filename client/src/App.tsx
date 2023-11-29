@@ -1,19 +1,46 @@
-import React from "react";
+import React, { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import GlobalStyle from "./style/global";
 
 import Home from "./pages/Home";
 import Search from "./pages/Search";
 import Bookmark from "./pages/Bookmark";
+import { imageData } from "./interface/unsplash";
 
 function App() {
+  const [bookmark, setBookmark] = useState<imageData[]>([]);
+
+  const handleBookmark = (image: imageData) => {
+    const isBookmarked = bookmark.some(
+      (bookmarkedImage) => bookmarkedImage.id === image.id
+    );
+
+    if (isBookmarked) {
+      setBookmark(
+        bookmark.filter((bookmarkedImage) => bookmarkedImage.id !== image.id)
+      );
+    } else {
+      setBookmark([...bookmark, image]);
+    }
+  };
+
   return (
     <>
       <GlobalStyle />
       <Routes>
-        <Route path="/" element={<Home />}></Route>
+        <Route
+          path="/"
+          element={
+            <Home handleBookmark={handleBookmark} bookmark={bookmark} />
+          }
+        ></Route>
         <Route path="search" element={<Search />}></Route>
-        <Route path="bookmark" element={<Bookmark />}></Route>
+        <Route
+          path="bookmark"
+          element={
+            <Bookmark handleBookmark={handleBookmark} bookmark={bookmark} />
+          }
+        ></Route>
       </Routes>
     </>
   );
