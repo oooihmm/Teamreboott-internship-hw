@@ -66,6 +66,7 @@ const UserInfo = styled.div`
 `;
 
 const ModalBody = styled.div`
+  width: 98%;
   height: 40px;
   gap: 40px;
   margin-top: 40px;
@@ -139,7 +140,9 @@ const ImageDetail = ({
               <span>
                 {image.created_at.substring(0, image.created_at.indexOf("T"))}
               </span>
-              <span hidden={!description}>{description}</span>
+              <span hidden={!description || description.length > 150}>
+                {description}
+              </span>
             </ModalBody>
           </ModalContent>
         </ModalOverlay>
