@@ -1,4 +1,4 @@
-export interface imageData {
+export interface ImageData {
   id: string;
   created_at: string;
   updated_at: string;
@@ -14,6 +14,24 @@ export interface imageData {
   views: number;
   downloads: number;
   description: string;
+}
+
+export interface SearchData {
+  total: number;
+  total_pages: number;
+  results: SearchImageData;
+}
+
+export interface SearchImageData {
+  id: string;
+  created_at: string;
+  width: number;
+  height: number;
+  color: string;
+  likes: number;
+  user: User;
+  urls: Urls;
+  links: Links;
 }
 
 export interface User {
