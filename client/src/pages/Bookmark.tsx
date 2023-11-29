@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios, { AxiosResponse } from "axios";
 import Dashboard from "../style/dashboard";
 import Contents from "../style/contents";
-import ImageContainer from "../components/ImageContainer";
+import ImageBox from "../components/ImageBox";
 import ImageWrapper from "../style/imagewrapper";
 import { ImageData } from "../interface/unsplash";
 
@@ -19,7 +19,7 @@ const Bookmark = ({ bookmark, handleBookmark }: BookmarkProps) => {
       <Contents>
         <ImageWrapper>
           {bookmark.slice(0, chunkSize).map((image) => (
-            <ImageContainer
+            <ImageBox
               key={image.id}
               image={image}
               bookmark={bookmark}
@@ -29,7 +29,7 @@ const Bookmark = ({ bookmark, handleBookmark }: BookmarkProps) => {
         </ImageWrapper>
         <ImageWrapper>
           {bookmark.slice(chunkSize, chunkSize * 2).map((image) => (
-            <ImageContainer
+            <ImageBox
               key={image.id}
               image={image}
               bookmark={bookmark}
@@ -39,7 +39,7 @@ const Bookmark = ({ bookmark, handleBookmark }: BookmarkProps) => {
         </ImageWrapper>
         <ImageWrapper>
           {bookmark.slice(chunkSize * 2, bookmark.length).map((image) => (
-            <ImageContainer
+            <ImageBox
               key={image.id}
               image={image}
               bookmark={bookmark}

@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom";
 import axios, { AxiosResponse } from "axios";
 import Dashboard from "../style/dashboard";
 import Contents from "../style/contents";
-import ImageContainer from "../components/ImageContainer";
+import ImageBox from "../components/ImageBox";
 import ImageWrapper from "../style/imagewrapper";
 import SearchBox from "../components/SearchBox";
 import { SearchData, ImageData } from "../interface/unsplash";
@@ -53,7 +53,7 @@ const Search = ({ bookmark, handleBookmark }: SearchProps) => {
         <SearchBox />
         <ImageWrapper>
           {imageList.slice(0, chunkSize).map((image) => (
-            <ImageContainer
+            <ImageBox
               key={image.id}
               image={image}
               bookmark={bookmark}
@@ -63,7 +63,7 @@ const Search = ({ bookmark, handleBookmark }: SearchProps) => {
         </ImageWrapper>
         <ImageWrapper>
           {imageList.slice(chunkSize, chunkSize * 2).map((image) => (
-            <ImageContainer
+            <ImageBox
               key={image.id}
               image={image}
               bookmark={bookmark}
@@ -73,7 +73,7 @@ const Search = ({ bookmark, handleBookmark }: SearchProps) => {
         </ImageWrapper>
         <ImageWrapper>
           {imageList.slice(chunkSize * 2, imageList.length).map((image) => (
-            <ImageContainer
+            <ImageBox
               key={image.id}
               image={image}
               bookmark={bookmark}

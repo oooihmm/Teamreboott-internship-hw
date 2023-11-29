@@ -26,7 +26,7 @@ type ImageProps = {
   handleBookmark: (image: ImageData) => void;
 };
 
-const ImageContainer = ({ image, bookmark, handleBookmark }: ImageProps) => {
+const ImageBox = ({ image, bookmark, handleBookmark }: ImageProps) => {
   const isBookmarked = bookmark.some(
     (bookmarkedImage) => bookmarkedImage.id === image.id
   );
@@ -61,4 +61,4 @@ const ImageContainer = ({ image, bookmark, handleBookmark }: ImageProps) => {
   );
 };
 
-export default ImageContainer;
+export default ImageBox;
