@@ -2,7 +2,7 @@
 
 teamreboott intership frontend develop 사전 과제 제출용 repository입니다.
 
-<img src="unsplash-main.png" width="1000px">
+<img src="./image/unsplash-main.png" width="1000px">
 
 ## 개요
 
@@ -36,12 +36,12 @@ teamreboott intership frontend develop 사전 과제 제출용 repository입니�
 
 ### 상세 모달
 
-<img src="unsplash-detail.png" width="1000px">
+<img src="./image/unsplash-detail.png" width="1000px">
 
 ### 검색 페이지
 
-<img src="unsplash-search.png" width="1000px">
+<img src="./image/unsplash-search.png" width="1000px">
 
 ### 북마크 페이지
 
-<img src="unsplash-bookmark.png" width="1000px">
+<img src="./image/unsplash-bookmark.png" width="1000px">
