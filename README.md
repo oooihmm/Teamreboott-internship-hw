@@ -2,7 +2,7 @@
 
 teamreboott intership frontend develop 사전 과제 제출용 repository입니다.
 
-<img src="unsplash.png" width="1000px">
+<img src="unsplash-main.png" width="1000px">
 
 ## 개요
 
@@ -31,3 +31,17 @@ teamreboott intership frontend develop 사전 과제 제출용 repository입니�
 - `npm start` : 로컬에서 서비스를 실행합니다.
 - `npm run electron` : electron을 이용해 서비스를 배포합니다.
   </br> tsc ./public/electron.ts && react-scripts build && electron-builder build
+
+## 상세 화면
+
+### 상세 모달
+
+<img src="unsplash-detail.png" width="1000px">
+
+### 검색 페이지
+
+<img src="unsplash-search.png" width="1000px">
+
+### 북마크 페이지
+
+<img src="unsplash-bookmark.png" width="1000px">
