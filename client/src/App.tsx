@@ -18,10 +18,6 @@ function App() {
 		}
 	}, []);
 
-	useEffect(() => {
-		localStorage.setItem("savedBookmark", JSON.stringify(bookmark));
-	}, [bookmark]);
-
 	const handleBookmark = (image: ImageData) => {
 		const isBookmarked = bookmark.some(
 			(bookmarkedImage) => bookmarkedImage.id === image.id
@@ -34,6 +30,8 @@ function App() {
 		} else {
 			setBookmark([...bookmark, image]);
 		}
+
+		localStorage.setItem("savedBookmark", JSON.stringify(bookmark));
 	};
 
 	const Layout = () => {
