@@ -7,55 +7,57 @@ import ImageContainer from "../components/ImageContainer";
 import { RawImageData, ImageData } from "../interface/unsplash";
 
 type HomeProps = {
-  bookmark: ImageData[];
-  handleBookmark: (image: ImageData) => void;
+	bookmark: ImageData[];
+	handleBookmark: (image: ImageData) => void;
 };
 
 const Home = ({ bookmark, handleBookmark }: HomeProps) => {
-  const [imageList, setImageList] = useState<ImageData[]>([]);
+	const [imageList, setImageList] = useState<ImageData[]>([]);
+	const [background, setBackground] = useState<string>("");
 
-  useEffect(() => {
-    axios
-      .get("https://api.unsplash.com/photos/random", {
-        params: {
-          client_id: process.env.REACT_APP_ACCESS_KEY,
-          count: 12,
-        },
-      })
-      .then((response: AxiosResponse<RawImageData[]>) => {
-        const rawImageData: RawImageData[] = response.data;
-        const imageDataList: ImageData[] = rawImageData.map((image) => ({
-          id: image.id,
-          slug: image.slug,
-          created_at: image.created_at,
-          width: image.width,
-          height: image.height,
-          color: image.color,
-          likes: image.likes,
-          user: image.user,
-          urls: image.urls,
-          links: image.links,
-          alt_description: image.description,
-        }));
-        setImageList(imageDataList);
-      })
-      .catch((error: string) => {
-        console.error(error);
-      });
-  }, []);
+	useEffect(() => {
+		axios
+			.get("https://api.unsplash.com/photos/random", {
+				params: {
+					client_id: process.env.REACT_APP_ACCESS_KEY,
+					count: 12,
+				},
+			})
+			.then((response: AxiosResponse<RawImageData[]>) => {
+				const rawImageData: RawImageData[] = response.data;
+				const imageDataList: ImageData[] = rawImageData.map((image) => ({
+					id: image.id,
+					slug: image.slug,
+					created_at: image.created_at,
+					width: image.width,
+					height: image.height,
+					color: image.color,
+					likes: image.likes,
+					user: image.user,
+					urls: image.urls,
+					links: image.links,
+					alt_description: image.description,
+				}));
+				setImageList(imageDataList);
+				setBackground(imageDataList[imageDataList.length - 1].urls.raw);
+			})
+			.catch((error: string) => {
+				console.error(error);
+			});
+	}, []);
 
-  return (
-    <Dashboard>
-      <SearchContainer></SearchContainer>
-      <Contents>
-        <ImageContainer
-          imageList={imageList}
-          bookmark={bookmark}
-          handleBookmark={handleBookmark}
-        />
-      </Contents>
-    </Dashboard>
-  );
+	return (
+		<Dashboard>
+			<SearchContainer background={background}></SearchContainer>
+			<Contents>
+				<ImageContainer
+					imageList={imageList}
+					bookmark={bookmark}
+					handleBookmark={handleBookmark}
+				/>
+			</Contents>
+		</Dashboard>
+	);
 };
 
 export default Home;
