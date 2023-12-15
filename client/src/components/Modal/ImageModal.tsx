@@ -1,10 +1,10 @@
 import React, { useState, useRef } from "react";
 import styled from "styled-components";
-import { ImageData } from "../interface/unsplash";
-import BookmarkButton from "./BookmarkButton";
-import useClickOutside from "../hooks/useClickOutside";
+import { ImageData } from "../../interface/unsplash";
+import BookmarkButton from "../BookmarkButton";
+import useClickOutside from "../../hooks/useClickOutside";
 
-type ImageDetailProps = {
+type ImageModalProps = {
 	image: ImageData;
 	bookmark: ImageData[];
 	handleBookmark: (image: ImageData) => void;
@@ -12,13 +12,13 @@ type ImageDetailProps = {
 	handleModalClose: (open: boolean) => void;
 };
 
-const ImageDetail = ({
+const ImageModal = ({
 	image,
 	bookmark,
 	handleBookmark,
 	isModalOpen,
 	handleModalClose,
-}: ImageDetailProps) => {
+}: ImageModalProps) => {
 	const link = image.urls.small;
 	const description = image.alt_description;
 	const userImageLink = image.user.profile_image.medium;
@@ -82,7 +82,7 @@ const ImageDetail = ({
 	);
 };
 
-export default ImageDetail;
+export default ImageModal;
 
 const ModalOverlay = styled.div`
 	position: fixed;
