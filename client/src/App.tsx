@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route, Outlet } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "react-query";
 import GlobalStyle from "./style/global";
 
 import Header from "./components/Header";
@@ -7,6 +8,8 @@ import Home from "./pages/Home";
 import Search from "./pages/Search";
 import Bookmark from "./pages/Bookmark";
 import { ImageData } from "./interface/unsplash";
+
+const queryClient = new QueryClient();
 
 function App() {
 	const [bookmark, setBookmark] = useState<ImageData[]>([]);
@@ -45,29 +48,31 @@ function App() {
 
 	return (
 		<>
-			<GlobalStyle />
-			<Routes>
-				<Route path="/" element={<Layout />}>
-					<Route
-						index
-						element={
-							<Home handleBookmark={handleBookmark} bookmark={bookmark} />
-						}
-					></Route>
-					<Route
-						path="search"
-						element={
-							<Search handleBookmark={handleBookmark} bookmark={bookmark} />
-						}
-					></Route>
-					<Route
-						path="bookmark"
-						element={
-							<Bookmark handleBookmark={handleBookmark} bookmark={bookmark} />
-						}
-					></Route>
-				</Route>
-			</Routes>
+			<QueryClientProvider client={queryClient}>
+				<GlobalStyle />
+				<Routes>
+					<Route path="/" element={<Layout />}>
+						<Route
+							index
+							element={
+								<Home handleBookmark={handleBookmark} bookmark={bookmark} />
+							}
+						></Route>
+						<Route
+							path="search"
+							element={
+								<Search handleBookmark={handleBookmark} bookmark={bookmark} />
+							}
+						></Route>
+						<Route
+							path="bookmark"
+							element={
+								<Bookmark handleBookmark={handleBookmark} bookmark={bookmark} />
+							}
+						></Route>
+					</Route>
+				</Routes>
+			</QueryClientProvider>
 		</>
 	);
 }
