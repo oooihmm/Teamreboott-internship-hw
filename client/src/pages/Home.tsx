@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import axios, { AxiosResponse } from "axios";
 import Dashboard from "../style/dashboard";
 import Contents from "../style/contents";
 import SearchContainer from "../components/SearchContainer";
@@ -8,12 +7,7 @@ import { RawImageData, ImageData } from "../interface/unsplash";
 import { useQuery } from "react-query";
 import { fetchRandomPhotos } from "../api";
 
-type HomeProps = {
-	bookmark: ImageData[];
-	handleBookmark: (image: ImageData) => void;
-};
-
-const Home = ({ bookmark, handleBookmark }: HomeProps) => {
+const Home = () => {
 	const [imageList, setImageList] = useState<ImageData[]>([]);
 	const [background, setBackground] = useState<string>("");
 
@@ -50,11 +44,7 @@ const Home = ({ bookmark, handleBookmark }: HomeProps) => {
 		<Dashboard>
 			<SearchContainer background={background}></SearchContainer>
 			<Contents>
-				<ImageContainer
-					imageList={imageList}
-					bookmark={bookmark}
-					handleBookmark={handleBookmark}
-				/>
+				<ImageContainer imageList={imageList} />
 			</Contents>
 		</Dashboard>
 	);

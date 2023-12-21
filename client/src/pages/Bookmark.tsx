@@ -2,25 +2,19 @@ import React from "react";
 import Dashboard from "../style/dashboard";
 import Contents from "../style/contents";
 import ImageContainer from "../components/ImageContainer";
-import { ImageData } from "../interface/unsplash";
+import { useBookmarkStore } from "../store/useBookmarkStore";
 
-type BookmarkProps = {
-  bookmark: ImageData[];
-  handleBookmark: (image: ImageData) => void;
-};
+const Bookmark = () => {
+	const { bookmarks } = useBookmarkStore();
+	console.log(bookmarks);
 
-const Bookmark = ({ bookmark, handleBookmark }: BookmarkProps) => {
-  return (
-    <Dashboard>
-      <Contents>
-        <ImageContainer
-          imageList={bookmark}
-          bookmark={bookmark}
-          handleBookmark={handleBookmark}
-        />
-      </Contents>
-    </Dashboard>
-  );
+	return (
+		<Dashboard>
+			<Contents>
+				<ImageContainer imageList={bookmarks} />
+			</Contents>
+		</Dashboard>
+	);
 };
 
 export default Bookmark;

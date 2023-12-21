@@ -5,21 +5,15 @@ import Dashboard from "../style/dashboard";
 import Contents from "../style/contents";
 import SearchBox from "../components/SearchBox";
 import ImageContainer from "../components/ImageContainer";
-import { ImageData } from "../interface/unsplash";
 import { useQuery } from "react-query";
 import { fetchSearchPhotos } from "../api";
-
-type SearchProps = {
-	bookmark: ImageData[];
-	handleBookmark: (image: ImageData) => void;
-};
 
 const SearchTitle = styled.span`
 	font-size: 45px;
 	font-weight: 900;
 `;
 
-const Search = ({ bookmark, handleBookmark }: SearchProps) => {
+const Search = () => {
 	const location = useLocation();
 	const query = new URLSearchParams(location.search).get("query");
 
@@ -33,13 +27,7 @@ const Search = ({ bookmark, handleBookmark }: SearchProps) => {
 		} else if (isError) {
 			return <div>error</div>;
 		} else {
-			return (
-				<ImageContainer
-					imageList={data["results"]}
-					bookmark={bookmark}
-					handleBookmark={handleBookmark}
-				/>
-			);
+			return <ImageContainer imageList={data["results"]} />;
 		}
 	};
 

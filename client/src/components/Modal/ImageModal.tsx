@@ -3,19 +3,16 @@ import styled from "styled-components";
 import { ImageData } from "../../interface/unsplash";
 import BookmarkButton from "../BookmarkButton";
 import useClickOutside from "../../hooks/useClickOutside";
+import { useBookmarkStore } from "../../store/useBookmarkStore";
 
 type ImageModalProps = {
 	image: ImageData;
-	bookmark: ImageData[];
-	handleBookmark: (image: ImageData) => void;
 	isModalOpen: boolean;
 	handleModalClose: (open: boolean) => void;
 };
 
 const ImageModal = ({
 	image,
-	bookmark,
-	handleBookmark,
 	isModalOpen,
 	handleModalClose,
 }: ImageModalProps) => {
@@ -24,9 +21,12 @@ const ImageModal = ({
 	const userImageLink = image.user.profile_image.medium;
 	const userName = image.user.username;
 
-	const isBookmarked = bookmark.some(
+	const { bookmarks, addBookmark, removeBookmark } = useBookmarkStore();
+
+	const isBookmarked = bookmarks.some(
 		(bookmarkedImage) => bookmarkedImage.id === image.id
 	);
+
 	const [bookmarkColors, setBookmarkColors] = useState({
 		background: isBookmarked ? "#f15151" : "white",
 		border: isBookmarked ? "#0000" : "#d1d1d1",
@@ -34,12 +34,27 @@ const ImageModal = ({
 	});
 
 	const handleClick = () => {
+		isBookmarked ? handleRemoveBookmark() : handleAddBookmark();
+	};
+
+	const handleAddBookmark = () => {
+		addBookmark(image);
+
 		setBookmarkColors({
 			background: "#f15151",
 			border: "#0000",
 			color: "white",
 		});
-		handleBookmark(image);
+	};
+
+	const handleRemoveBookmark = () => {
+		removeBookmark(image);
+
+		setBookmarkColors({
+			background: "white",
+			border: "#d1d1d1",
+			color: "black",
+		});
 	};
 
 	const ref = useRef<HTMLDivElement>(null);
@@ -103,6 +118,7 @@ const ModalContent = styled.div`
 	padding: 20px;
 	width: 1000px;
 	min-height: 70vh;
+	max-height: 85vh;
 	overflow-y: auto;
 	border-radius: 4px;
 	position: relative;

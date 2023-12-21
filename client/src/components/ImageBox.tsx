@@ -5,6 +5,7 @@ import { ImageData } from "../interface/unsplash";
 
 import ImageModal from "./Modal/ImageModal";
 import BookmarkButton from "./BookmarkButton";
+import { useBookmarkStore } from "../store/useBookmarkStore";
 
 const ImageBoxStyle = styled.div`
 	padding: 0px;
@@ -23,12 +24,12 @@ const Image = styled.img`
 
 type ImageProps = {
 	image: ImageData;
-	bookmark: ImageData[];
-	handleBookmark: (image: ImageData) => void;
 };
 
-const ImageBox = ({ image, bookmark, handleBookmark }: ImageProps) => {
-	const isBookmarked = bookmark.some(
+const ImageBox = ({ image }: ImageProps) => {
+	const { bookmarks, addBookmark, removeBookmark } = useBookmarkStore();
+
+	const isBookmarked = bookmarks.some(
 		(bookmarkedImage) => bookmarkedImage.id === image.id
 	);
 
@@ -44,12 +45,27 @@ const ImageBox = ({ image, bookmark, handleBookmark }: ImageProps) => {
 	const [isModalOpen, setModalOpen] = useState(false);
 
 	const handleClick = () => {
+		isBookmarked ? handleRemoveBookmark() : handleAddBookmark();
+	};
+
+	const handleAddBookmark = () => {
+		addBookmark(image);
+
 		setBookmarkColors({
 			background: "#f15151",
 			border: "#0000",
 			color: "white",
 		});
-		handleBookmark(image);
+	};
+
+	const handleRemoveBookmark = () => {
+		removeBookmark(image);
+
+		setBookmarkColors({
+			background: "white",
+			border: "#d1d1d1",
+			color: "black",
+		});
 	};
 
 	const handleModalOpen = () => {
@@ -66,8 +82,6 @@ const ImageBox = ({ image, bookmark, handleBookmark }: ImageProps) => {
 			<Image src={link} alt={description} onClick={handleModalOpen} />
 			<ImageModal
 				image={image}
-				bookmark={bookmark}
-				handleBookmark={handleBookmark}
 				isModalOpen={isModalOpen}
 				handleModalClose={handleModalClose}
 			/>
