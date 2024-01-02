@@ -37,6 +37,10 @@ export interface ImageData {
   alt_description: string;
 }
 
+export interface ComparedImageData extends ImageData {
+  isBookmarked: Boolean;
+}
+
 export interface User {
   id: string;
   updated_at: string;
