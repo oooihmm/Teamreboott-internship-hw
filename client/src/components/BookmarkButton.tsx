@@ -25,11 +25,17 @@ const Bookmark = styled.div<{
 `;
 
 type BookmarkProps = {
-  bookmarkColors: { background: string; color: string; border: string };
+  isBookmarked: Boolean;
   onClick: () => void;
 };
 
-const BookmarkButton = ({ bookmarkColors, onClick }: BookmarkProps) => {
+const BookmarkButton = ({ isBookmarked, onClick }: BookmarkProps) => {
+  const bookmarkColors = {
+    background: isBookmarked ? "#f15151" : "white",
+    border: isBookmarked ? "#0000" : "#d1d1d1",
+    color: isBookmarked ? "white" : "black",
+  };
+
   return (
     <Bookmark
       $background={bookmarkColors.background}
